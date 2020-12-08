@@ -1,9 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const Alien = require('../models/aliens');
+const verify = require('./verifyToken');
 
 //Getting All
-router.get('/',async(req,res)=>{
+//Adding Auth token
+router.get('/', verify, async(req,res)=>{
     try{
         const aliens = await Alien.find(); 
         res.json(aliens);
