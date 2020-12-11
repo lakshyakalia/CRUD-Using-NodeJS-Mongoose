@@ -3,7 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
-
+const {  PORT, HOST , SECRET} = require('./config');
 
 
 //Connecting to DB
@@ -26,4 +26,7 @@ app.use('/user',authRoute);
 
 
 //For listening
-app.listen(3000,()=>console.log('Server started'));
+app.listen(PORT,HOST, err=>{
+    if(err) throw err;
+    console.log(`Running on http:${HOST}:${PORT}`)
+})
